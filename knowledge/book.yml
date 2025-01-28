@@ -1,0 +1,9 @@
+title: packagist.intheloftstudios
+uuid: 957dc16d-7742-482f-b53c-08f1b14847a2
+chapters:
+  -
+    id: general
+    title: General
+    pages:
+      - changelog
+      - readme

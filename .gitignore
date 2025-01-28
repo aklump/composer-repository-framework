@@ -1,0 +1,4 @@
+.loft_deploy
+/bin/config/*.local.yml
+/private/*/secrets/
+.phpdoc/

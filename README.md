@@ -6,6 +6,7 @@ This repository is for indexing unpublished Composer dependencies.
 
 1. Create a public server and domain to act as the `repository` entry in _composer.json_ files of the depending projects.
 2. Configure an SSH user on the server for publishing changes to the repository.
+1. Setup key-based authentication for publishing to the repository server.
 5. Copy _./install/config.sh_ to _./config.sh_; open _./config.sh_ and edit:
     * Set `REPOSITORY_URL`, e.g. `https://packages.intheloftstudios.com`
     * Set the SSH info for connecting to the repositry server.
@@ -30,4 +31,4 @@ This repository is for indexing unpublished Composer dependencies.
 These commands may be used, but are generally not necessary.
 
 * `bin/rebuild.sh` Scans all packages for dependencies and builds the static dependency file.
-* `bin/publish.sh` Push the existing dependency file to the live site.
+* `bin/publish.sh` or `bin/publish.sh -v` Push the existing dependency file to the repository server.

@@ -28,7 +28,13 @@ This repository is for indexing unpublished Composer dependencies.
 
 ## Adding a Package
 
-1. Create an entry in _satis.json_
+1. Create a `repository` entry in _satis.json_, e.g.
+   ```json
+    {
+      "type": "github",
+      "url": "https://github.com/aklump/json-schema-loading"
+    }
+    ```
 2. Any time a new version of this package is published execute `~/bin/package_changed.sh`
 
 ## Commands

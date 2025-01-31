@@ -5,7 +5,10 @@ config.sh
 composer.lock
 satis.json
 web/*
-!web/.gitkeep
+!web/src
+!web/composer.json
+!web/event.php
+
 
 # Development Ignore, may be removed later
 /data/

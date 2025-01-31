@@ -1,0 +1,25 @@
+{
+  "name": "aklump/web",
+  "type": "project",
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://packages.intheloftstudios.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "InTheLoftStudios\\Packages\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "Aaron Klump",
+      "email": "sourcecode@intheloftstudios.com"
+    }
+  ],
+  "require": {
+    "aklump/annotated-response": "^0.0",
+    "vlucas/phpdotenv": "^5.6"
+  }
+}

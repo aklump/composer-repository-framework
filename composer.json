@@ -15,5 +15,8 @@
       "name": "Aaron Klump",
       "email": "sourcecode@intheloftstudios.com"
     }
-  ]
+  ],
+  "require": {
+    "ext-json": "*"
+  }
 }

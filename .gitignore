@@ -1,7 +1,4 @@
-.loft_deploy
-.phpdoc/
 /vendor/
-/data/
 /.cache/*
 !/.cache/.gitkeep
 config.sh
@@ -9,3 +6,7 @@ composer.lock
 satis.json
 web/*
 !web/.gitkeep
+
+# Development Ignore, may be removed later
+/data/
+/src/

@@ -9,16 +9,19 @@ This repository is for indexing unpublished Composer dependencies.
 
 ## Installation
 
-1. Copy _./install/satis.json_ to _./satis.json_
-   *  Open _.satis.json_ and set `name` (e.g., `aklump/packages`) and `homepage` (e.g., `https://packages.intheloftstudios.com`) to the public repository URL.
-3. Copy _./install/config.sh_ to _./config.sh_
-   * Open _./config.sh_ and set the values for SSH publishing.
-5. Make sure _.cache_ is writeable
-6. Create a cronjob with the desired publish frequency that executes app/bin/on_cron.sh, e.g.
+1. Create a public server and domain to act as the `repository` entry in _composer.json_ files of the depending projects.
+2. Configure an SSH user on the server for publishing changes to the repository.
+5. Copy _./install/config.sh_ to _./config.sh_; open _./config.sh_ and edit:
+    * Set `REPOSITORY_URL`, e.g. `https://packages.intheloftstudios.com`
+    * Set the SSH info for connecting to the repositry server.
+4. Copy _./install/satis.json_ to _./satis.json_
+    * Open _.satis.json_ and set `name` (e.g., `aklump/packages`) and `homepage`, which should match `REPOSITORY_URL` in _config.sh_.
+6. Make sure _.cache/_ and _web/_ directories are both writeable.
+7. Create a cronjob with the desired publish frequency that executes app/bin/on_cron.sh, e.g.
     ```
     */15 * * * 1-6 /Users/aklump/Code/Projects/InTheLoftStudios/InTheLoftStudios/site-packages/app/bin/on_cron.sh
     ```
-7. Create an easy-to-remember alias for triggering updates:
+8. Create an easy-to-remember alias for triggering updates:
     * `mkdir -p ~/bin && cd ~/bin`
     * `ln -s /Users/aklump/Code/Projects/InTheLoftStudios/InTheLoftStudios/site-packages/app/bin/on_package_change.sh package_changed.sh`
 

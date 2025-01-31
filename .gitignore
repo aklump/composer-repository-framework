@@ -1,4 +1,11 @@
 .loft_deploy
-/bin/config/*.local.yml
-/private/*/secrets/
 .phpdoc/
+/vendor/
+/data/
+/.cache/*
+!/.cache/.gitkeep
+config.sh
+composer.lock
+satis.json
+web/*
+!web/.gitkeep

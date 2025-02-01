@@ -7,7 +7,7 @@
       <link rel="stylesheet" href="../../dist/node_modules/bootstrap/dist/css/bootstrap.css">
       <link rel="stylesheet" href="../../dist/dist/bootstrap_theme.css">
       <link rel="stylesheet" href="../../dist/node_modules/bootstrap-icons/font/bootstrap-icons.min.css">
-    <title>Private Packagist for In the Loft Studios | packages.intheloftstudios</title>
+    <title>Repository Readme | packages.intheloftstudios</title>
 </head>
 <body class="my-5">
 
@@ -26,13 +26,13 @@
          aria-controls="table-of-contents">TOC</a>
     </li>
     <li class="breadcrumb-item">
-      <a href="changelog.html">General</a></li>
+      <a href="repository_readme.html">Repository</a></li>
   </ol>
 </nav>
 
       </div>
       <div class="header__tags me-3">  </div>
-      <div class="header__page-numbers flex-shrink-1">2
+      <div class="header__page-numbers flex-shrink-1">5
         / 5</div>
     </div>
   </div>
@@ -41,36 +41,8 @@
 <main class="container-md flex-column">
   <div class="row mb-5 pt-5">
     <article class="col">
-      <h1 class="mb-4 text-primary">Private Packagist for In the Loft Studios</h1>
-      <p>This repository is for indexing unpublished Composer dependencies.</p>
-<h2>Installation</h2>
-<ol>
-<li>Create a public server and domain to act as the <code>repository</code> entry in <em>composer.json</em> files of the depending projects.</li>
-<li>Configure an SSH user on the server for publishing changes to the repository.</li>
-<li>Setup key-based authentication for publishing to the repository server.</li>
-<li>Copy <em>./install/config.sh</em> to <em>./config.sh</em>; open <em>./config.sh</em> and edit:<ul>
-<li>Set <code>REPOSITORY_URL</code>, e.g. <code>https://packages.intheloftstudios.com</code></li>
-<li>Set the SSH info for connecting to the repositry server.</li>
-</ul>
-</li>
-<li>Copy <em>./install/satis.json</em> to <em>./satis.json</em><ul>
-<li>Open <em>.satis.json</em> and set <code>name</code> (e.g., <code>aklump/packages</code>) and <code>homepage</code>, which should match <code>REPOSITORY_URL</code> in <em>config.sh</em>.</li>
-</ul>
-</li>
-<li>Copy <em>./install/.env</em> to <em>web/.env</em> and enter a strong value for <code>API_SECRET</code>.</li>
-<li>Make sure <em>.cache/</em> and <em>web/</em> directories are both writeable.</li>
-<li>Create a cronjob with the desired publish frequency that executes app/bin/on_cron.sh, e.g.<pre><code> */15 * * * 1-6 /Users/aklump/Code/Projects/InTheLoftStudios/InTheLoftStudios/site-packages/app/bin/on_cron.sh
-</code></pre>
-</li>
-</ol>
-<h2>Adding a Package</h2>
-<p>Create a github hook to this url <code>https://packages.intheloftstudios.com/api/event.php?secret={API_SECRET}</code> for the <code>push</code> action.</p>
-<h2>Commands</h2>
-<p>These commands may be used, but are generally not necessary.</p>
-<ul>
-<li><code>bin/rebuild.sh</code> Scans all packages for dependencies and builds the static dependency file.</li>
-<li><code>bin/publish.sh</code> or <code>bin/publish.sh -v</code> Push the existing dependency file to the repository server.</li>
-</ul>
+      <h1 class="mb-4 text-primary">Repository Readme</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.   </p>
     </article>
   </div>
 </main>
@@ -85,11 +57,11 @@
 <nav class="nav d-flex justify-content-center align-items-center
   fixed-bottom">
   <div class="btn-group flex-fill">
-              <a href="changelog.html" class="btn nav__prev-chapter btn-secondary"><i class="bi
-      bi-caret-left-fill"></i> Changelog</a>
+              <a href="repository_readme.html" class="btn nav__prev-chapter btn-secondary"><i class="bi
+      bi-caret-left-fill"></i> Repository Readme</a>
   
     
-              <a href="changelog.html" class="btn nav__prev-page js-nav__prev-page
+              <a href="../general/distributor.html" class="btn nav__prev-page js-nav__prev-page
     btn-primary"><i class="bi
       bi-caret-left-fill"></i></a>
   
@@ -100,9 +72,8 @@
        aria-controls="table-of-contents"><i class="bi
            bi-list-ol"></i></a>
     
-              <a href="publisher.html" class="btn nav__next-page js-nav__next-page
-    btn-primary"><i class="bi bi-file-earmark"></i> Publisher <i class="bi
-       bi-caret-right-fill"></i></a>
+              <span class="btn nav__next-page js-nav__next-page
+    btn-primary"></span>
   
     
               <span class="btn nav__next-chapter btn-secondary "></span>
@@ -130,35 +101,35 @@
         <h2 class="h4 mt-4">Matched Pages</h2>
         <ol class="list-unstyled">
                                               <li data-page="changelog" value="1">
-      <a class="js-page-link" href="changelog.html">Changelog<span
+      <a class="js-page-link" href="../general/changelog.html">Changelog<span
               class="js-search-score
               badge
               bg-info rounded-pill badge-sm"></span></a>
     </li>
   
                                     <li data-page="readme" value="2">
-      <a class="js-page-link" href="readme.html">Private Packagist for In the Loft Studios<span
+      <a class="js-page-link" href="../general/readme.html">Private Packagist for In the Loft Studios<span
               class="js-search-score
               badge
               bg-info rounded-pill badge-sm"></span></a>
     </li>
   
                                     <li data-page="publisher" value="3">
-      <a class="js-page-link" href="publisher.html">Publisher<span
+      <a class="js-page-link" href="../general/publisher.html">Publisher<span
               class="js-search-score
               badge
               bg-info rounded-pill badge-sm"></span></a>
     </li>
   
                                     <li data-page="distributor" value="4">
-      <a class="js-page-link" href="distributor.html">Distributor<span
+      <a class="js-page-link" href="../general/distributor.html">Distributor<span
               class="js-search-score
               badge
               bg-info rounded-pill badge-sm"></span></a>
     </li>
   
                                                           <li data-page="repository_readme" value="5">
-      <a class="js-page-link" href="../repository/repository_readme.html">Repository Readme<span
+      <a class="js-page-link" href="repository_readme.html">Repository Readme<span
               class="js-search-score
               badge
               bg-info rounded-pill badge-sm"></span></a>
@@ -171,26 +142,26 @@
               <h2 class="h4 mt-4">General</h2>
         <ol>
                                 <li data-page="changelog" value="1">
-      <a class="js-page-link" href="changelog.html">Changelog</a>
+      <a class="js-page-link" href="../general/changelog.html">Changelog</a>
     </li>
   
                                 <li data-page="readme" value="2">
-      <a class="js-page-link" href="readme.html">Private Packagist for In the Loft Studios</a>
+      <a class="js-page-link" href="../general/readme.html">Private Packagist for In the Loft Studios</a>
     </li>
   
                                 <li data-page="publisher" value="3">
-      <a class="js-page-link" href="publisher.html">Publisher</a>
+      <a class="js-page-link" href="../general/publisher.html">Publisher</a>
     </li>
   
                                 <li data-page="distributor" value="4">
-      <a class="js-page-link" href="distributor.html">Distributor</a>
+      <a class="js-page-link" href="../general/distributor.html">Distributor</a>
     </li>
   
                   </ol>
               <h2 class="h4 mt-4">Repository</h2>
         <ol>
                                 <li data-page="repository_readme" value="5">
-      <a class="js-page-link" href="../repository/repository_readme.html">Repository Readme</a>
+      <a class="js-page-link" href="repository_readme.html">Repository Readme</a>
     </li>
   
                   </ol>
@@ -212,15 +183,15 @@
                 
         <ul class="list-group list-group-flush">
                                     <a class="list-group-item list-group-item-action"
-                 data-tags="[]" href="changelog.html">Changelog</a>
+                 data-tags="[]" href="../general/changelog.html">Changelog</a>
                                                 <a class="list-group-item list-group-item-action"
-                 data-tags="[]" href="readme.html">Private Packagist for In the Loft Studios</a>
+                 data-tags="[]" href="../general/readme.html">Private Packagist for In the Loft Studios</a>
                                                 <a class="list-group-item list-group-item-action"
-                 data-tags="[]" href="publisher.html">Publisher</a>
+                 data-tags="[]" href="../general/publisher.html">Publisher</a>
                                                 <a class="list-group-item list-group-item-action"
-                 data-tags="[]" href="distributor.html">Distributor</a>
+                 data-tags="[]" href="../general/distributor.html">Distributor</a>
                                                 <a class="list-group-item list-group-item-action"
-                 data-tags="[]" href="../repository/repository_readme.html">Repository Readme</a>
+                 data-tags="[]" href="repository_readme.html">Repository Readme</a>
                               </ul>
       </div>
     </div>

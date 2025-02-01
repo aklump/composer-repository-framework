@@ -1,24 +1,11 @@
-function remove() {
-  local path="$1"
-
-  [ -d "$path" ] && rm -r "$path"; return
-  [ -f "$path" ] && rm "$path"; return
-}
-
-remove repository_manager/.cache
-remove repository_manager/.env
-remove repository_manager/include/
-remove repository_manager/index.html
-remove repository_manager/packages.json
-remove repository_manager/vendor/
-remove repository_manager/composer.lock
-
-remove repository/vendor/
-remove repository/web/include
-remove repository/web/index.html
-remove repository/web/packages.json
-remove repository/.env
-remove repository/composer.lock
-remove repository/satis.json
-
+rm -r include/ &> /dev/null
+rm -r vendor/ &> /dev/null
+rm -r web/include &> /dev/null
+rm -r .cache &> /dev/null
+rm composer.lock &> /dev/null
+rm index.html &> /dev/null
+rm packages.json &> /dev/null
+rm web/index.html &> /dev/null
+rm web/packages.json &> /dev/null
+rm know.log &> /dev/null
 exit 0

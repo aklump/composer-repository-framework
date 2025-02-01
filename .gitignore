@@ -1,10 +1,10 @@
-/config.json
+.DS_Store
 .cache
-vendor/
-composer.lock
 .env
-satis.json
-
-# Development Ignore, may be removed later
-/data/
-/src/
+data/*
+!data/.gitkeep
+composer.lock
+vendor/
+web/include/
+web/index.html
+web/packages.json

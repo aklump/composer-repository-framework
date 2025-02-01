@@ -1,0 +1,6 @@
+{
+  "name": "VENDOR/PACKAGE",
+  "homepage": "REPOSITORY_URL",
+  "require-all": true,
+  "repositories": []
+}

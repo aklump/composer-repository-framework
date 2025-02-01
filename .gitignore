@@ -1,14 +1,9 @@
-/vendor/
-/.cache/*
-!/.cache/.gitkeep
-config.sh
+/config.json
+.cache
+vendor/
 composer.lock
+.env
 satis.json
-web/*
-!web/src
-!web/composer.json
-!web/event.php
-
 
 # Development Ignore, may be removed later
 /data/

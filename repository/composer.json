@@ -1,0 +1,28 @@
+{
+  "name": "aklump/packages-intheloftstudios",
+  "description": "Composer package manager for unpublished In the Loft Studios packages.",
+  "type": "project",
+  "license": "BSD-3-Clause",
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://packages.intheloftstudios.com"
+    }
+  ],
+  "require": {
+    "php": "^7.4",
+    "ext-json": "*",
+    "composer/satis": "^1.0"
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "AKlump\\PackagesITLS\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "Aaron Klump",
+      "email": "sourcecode@intheloftstudios.com"
+    }
+  ]
+}

@@ -12,27 +12,16 @@ This repository is for indexing unpublished Composer dependencies.
     * Set the SSH info for connecting to the repositry server.
 5. Copy _./install/satis.json_ to _./satis.json_
     * Open _.satis.json_ and set `name` (e.g., `aklump/packages`) and `homepage`, which should match `REPOSITORY_URL` in _config.sh_.
-6. Copy _./install/.env_ to _web/.env_ and enter a strong value for `EVENT_SECRET`.
+6. Copy _./install/.env_ to _web/.env_ and enter a strong value for `API_SECRET`.
 7. Make sure _.cache/_ and _web/_ directories are both writeable.
 8. Create a cronjob with the desired publish frequency that executes app/bin/on_cron.sh, e.g.
     ```
     */15 * * * 1-6 /Users/aklump/Code/Projects/InTheLoftStudios/InTheLoftStudios/site-packages/app/bin/on_cron.sh
     ```
-9. Create an easy-to-remember alias for triggering updates:
-    * `mkdir -p ~/bin && cd ~/bin`
-    * `ln -s /Users/aklump/Code/Projects/InTheLoftStudios/InTheLoftStudios/site-packages/app/bin/on_package_change.sh package_changed.sh`
 
 ## Adding a Package
 
-1. Create a `repository` entry in _satis.json_, e.g.
-   ```json
-    {
-      "type": "github",
-      "url": "https://github.com/aklump/json-schema-loading"
-    }
-    ```
-2. Any time a new version of this package is published execute `~/bin/package_changed.sh`  This can be achieved by:
-   * Create a github hook to this url `https://packages.intheloftstudios.com/event.php?secret={EVENT_SECRET}` for the `push` action.
+Create a github hook to this url `https://packages.intheloftstudios.com/api/event.php?secret={API_SECRET}` for the `push` action.
 
 ## Commands
 

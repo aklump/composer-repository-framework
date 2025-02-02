@@ -29,7 +29,6 @@
     }
   },
   "require": {
-    "php": "^7.4",
     "ext-json": "*",
     "composer/satis": "@dev",
     "aklump/annotated-response": "^0.0",

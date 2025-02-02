@@ -22,7 +22,7 @@ A framework for building private Packagist-like repositories by In the Loft Stud
 * Run `./app/bin/perms` to set the config perms.
 * Create a cronjob with the desired publish frequency, e.g.,
     ```
-    */15 * * * 1-6 /PATH/TO/ROOT/bin/on_cron.php
+    */15 * * * 1-6 /PATH/TO/app/bin/on_cron.php
     ```
 
 ## Adding a Package

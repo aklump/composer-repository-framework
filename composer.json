@@ -1,5 +1,5 @@
 {
-  "name": "aklump/packages-intheloftstudios",
+  "name": "aklump/composer-repository-framework",
   "description": "Composer package manager for unpublished In the Loft Studios packages.",
   "type": "project",
   "license": "BSD-3-Clause",
@@ -13,6 +13,14 @@
     {
       "type": "github",
       "url": "https://github.com/aklump/annotated-response"
+    },
+    {
+      "type": "github",
+      "url": "https://github.com/aklump/gitignore"
+    },
+    {
+      "type": "github",
+      "url": "https://github.com/aklump/easy-perms"
     }
   ],
   "autoload": {
@@ -23,8 +31,11 @@
   "require": {
     "php": "^7.4",
     "ext-json": "*",
-    "composer/satis": "^1.0",
+    "composer/satis": "@dev",
     "aklump/annotated-response": "^0.0",
-    "vlucas/phpdotenv": "^5.6"
+    "vlucas/phpdotenv": "^5.6",
+    "monolog/monolog": "^2.10",
+    "ext-curl": "*",
+    "aklump/easy-perms": "^0.0"
   }
 }

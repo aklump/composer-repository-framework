@@ -26,7 +26,6 @@
 
 namespace AKlump\Packages;
 
-use AKlump\Packages\Config;
 use Exception;
 use AKlump\Packages\API\Router;
 use AKlump\Packages\HTTP\Authenticate;
@@ -34,10 +33,12 @@ use AKlump\Packages\HTTP\Error;
 
 require_once __DIR__ . '/../../bootstrap.php';
 
+/** @var \Monolog\Logger $logger */
+
 try {
   (new Authenticate($_ENV['API_SECRET']))($_GET);
   $scheduler = new Schedule(__DIR__ . '/../../' . Config::CACHE_DIR_BASENAME);
-  $response = (new Router($scheduler))->handle(
+  $response = (new Router($logger, $scheduler))->handle(
     $_SERVER['REQUEST_METHOD'] ?? '',
     pathinfo(__FILE__, PATHINFO_FILENAME),
     file_get_contents('php://input')

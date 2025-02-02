@@ -7,7 +7,7 @@
       <link rel="stylesheet" href="../../dist/node_modules/bootstrap/dist/css/bootstrap.css">
       <link rel="stylesheet" href="../../dist/dist/bootstrap_theme.css">
       <link rel="stylesheet" href="../../dist/node_modules/bootstrap-icons/font/bootstrap-icons.min.css">
-    <title>Private Packagist for In the Loft Studios | packages.intheloftstudios</title>
+    <title>Composer Repository Framework | packages.intheloftstudios</title>
 </head>
 <body class="my-5">
 
@@ -33,7 +33,7 @@
       </div>
       <div class="header__tags me-3">  </div>
       <div class="header__page-numbers flex-shrink-1">2
-        / 5</div>
+        / 4</div>
     </div>
   </div>
 </header>
@@ -41,30 +41,31 @@
 <main class="container-md flex-column">
   <div class="row mb-5 pt-5">
     <article class="col">
-      <h1 class="mb-4 text-primary">Private Packagist for In the Loft Studios</h1>
-      <p>This repository is for indexing unpublished Composer dependencies.</p>
-<h2>Installation</h2>
-<ol>
-<li>Create a public server and domain to act as the <code>repository</code> entry in <em>composer.json</em> files of the depending projects.</li>
-<li>Configure an SSH user on the server for publishing changes to the repository.</li>
-<li>Setup key-based authentication for publishing to the repository server.</li>
-<li>Copy <em>./install/config.sh</em> to <em>./config.sh</em>; open <em>./config.sh</em> and edit:<ul>
-<li>Set <code>REPOSITORY_URL</code>, e.g. <code>https://packages.intheloftstudios.com</code></li>
-<li>Set the SSH info for connecting to the repositry server.</li>
+      <h1 class="mb-4 text-primary">Composer Repository Framework</h1>
+      <p>A framework for building private Packagist-like repositories by In the Loft Studios.</p>
+<pre><code class="shell">
+</code></pre>
+<h2>Requirements</h2>
+<ul>
+<li>You must install on a public server.</li>
+<li>The server must have Composer installed.</li>
 </ul>
-</li>
-<li>Copy <em>./install/satis.json</em> to <em>./satis.json</em><ul>
-<li>Open <em>.satis.json</em> and set <code>name</code> (e.g., <code>aklump/packages</code>) and <code>homepage</code>, which should match <code>REPOSITORY_URL</code> in <em>config.sh</em>.</li>
-</ul>
-</li>
-<li>Copy <em>./install/.env</em> to <em>web/.env</em> and enter a strong value for <code>API_SECRET</code>.</li>
-<li>Make sure <em>.cache/</em> and <em>web/</em> directories are both writeable.</li>
-<li>Create a cronjob with the desired publish frequency that executes app/bin/on_cron.sh, e.g.<pre><code> */15 * * * 1-6 /Users/aklump/Code/Projects/InTheLoftStudios/InTheLoftStudios/site-packages/app/bin/on_cron.sh
+<h2>Installing</h2>
+<ul>
+<li><code>composer create-project aklump/composer-repository-framework:@dev --repository="{\"type\":\"github\",\"url\": \"https://github.com/aklump/composer-repository-framework\"}"</code></li>
+<li>Configure the webroot as <em>./web/</em></li>
+<li>Run <code>./bin/install.sh</code></li>
+<li>Follow instructions for replacing configuration tokens.</li>
+<li>Create a cronjob with the desired publish frequency, e.g.,<pre><code>  */15 * * * 1-6 /PATH/TO/ROOT/bin/on_cron.php
 </code></pre>
 </li>
-</ol>
+</ul>
 <h2>Adding a Package</h2>
-<p>Create a github hook to this url <code>https://packages.intheloftstudios.com/api/event.php?secret={API_SECRET}</code> for the <code>push</code> action.</p>
+<p>Packages are adding by creating a Github webhook.</p>
+<ul>
+<li>Navigate to the Github repository for the package you want to add.</li>
+</ul>
+<p>Create a github hook to this url <code>https://{repository_url}/api/event.php?secret={API_SECRET}</code> for the <code>push</code> action.</p>
 <h2>Commands</h2>
 <p>These commands may be used, but are generally not necessary.</p>
 <ul>
@@ -137,7 +138,7 @@
     </li>
   
                                     <li data-page="readme" value="2">
-      <a class="js-page-link" href="readme.html">Private Packagist for In the Loft Studios<span
+      <a class="js-page-link" href="readme.html">Composer Repository Framework<span
               class="js-search-score
               badge
               bg-info rounded-pill badge-sm"></span></a>
@@ -157,13 +158,6 @@
               bg-info rounded-pill badge-sm"></span></a>
     </li>
   
-                                                          <li data-page="repository_readme" value="5">
-      <a class="js-page-link" href="../repository/repository_readme.html">Repository Readme<span
-              class="js-search-score
-              badge
-              bg-info rounded-pill badge-sm"></span></a>
-    </li>
-  
                               </ol>
       </div>
         
@@ -175,7 +169,7 @@
     </li>
   
                                 <li data-page="readme" value="2">
-      <a class="js-page-link" href="readme.html">Private Packagist for In the Loft Studios</a>
+      <a class="js-page-link" href="readme.html">Composer Repository Framework</a>
     </li>
   
                                 <li data-page="publisher" value="3">
@@ -184,13 +178,6 @@
   
                                 <li data-page="distributor" value="4">
       <a class="js-page-link" href="distributor.html">Distributor</a>
-    </li>
-  
-                  </ol>
-              <h2 class="h4 mt-4">Repository</h2>
-        <ol>
-                                <li data-page="repository_readme" value="5">
-      <a class="js-page-link" href="../repository/repository_readme.html">Repository Readme</a>
     </li>
   
                   </ol>
@@ -214,13 +201,11 @@
                                     <a class="list-group-item list-group-item-action"
                  data-tags="[]" href="changelog.html">Changelog</a>
                                                 <a class="list-group-item list-group-item-action"
-                 data-tags="[]" href="readme.html">Private Packagist for In the Loft Studios</a>
+                 data-tags="[]" href="readme.html">Composer Repository Framework</a>
                                                 <a class="list-group-item list-group-item-action"
                  data-tags="[]" href="publisher.html">Publisher</a>
                                                 <a class="list-group-item list-group-item-action"
                  data-tags="[]" href="distributor.html">Distributor</a>
-                                                <a class="list-group-item list-group-item-action"
-                 data-tags="[]" href="../repository/repository_readme.html">Repository Readme</a>
                               </ul>
       </div>
     </div>

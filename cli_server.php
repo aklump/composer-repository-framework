@@ -45,9 +45,11 @@ use AKlump\Packages\API\Router;
 
 require_once __DIR__ . '/bootstrap.php';
 
+/** @var \Monolog\Logger $logger */
+
 $scheduler = new Schedule(__DIR__ . '/' . Config::CACHE_DIR_BASENAME);
 stream_set_blocking(STDIN, 0);
-$response = (new Router($scheduler))->handle(
+$response = (new Router($logger, $scheduler))->handle(
   strtoupper($argv[1] ?? ''),
   $argv[2] ?? '',
   fgets(STDIN)

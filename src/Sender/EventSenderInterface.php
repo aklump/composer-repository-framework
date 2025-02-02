@@ -21,4 +21,8 @@ interface EventSenderInterface {
    *
    */
   public function getRepositoryEntry(array $request): array;
+
+  public function getPackageName(array $request): string;
+
+  public function getPackageVersion(array $request): string;
 }

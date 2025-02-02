@@ -8,13 +8,17 @@ use Exception;
 use AKlump\Packages\Schedule;
 use AKlump\Packages\HTTP\Resources\Packages;
 use AKlump\Packages\HTTP\Error;
+use Monolog\Logger;
 use RuntimeException;
 
 class Router {
 
   private Schedule $scheduler;
 
-  public function __construct(Schedule $scheduler) {
+  private Logger $logger;
+
+  public function __construct(Logger $logger, Schedule $scheduler) {
+    $this->logger = $logger;
     $this->scheduler = $scheduler;
   }
 
@@ -24,7 +28,7 @@ class Router {
       if (!isset($controllers[$route])) {
         throw new RuntimeException(sprintf('Invalid route: %s', $route), 404);
       }
-      $controller = new $controllers[$route]($this->scheduler);
+      $controller = new $controllers[$route]($this->logger, $this->scheduler);
       switch ($method) {
         case 'GET':
           $response = $controller->get();

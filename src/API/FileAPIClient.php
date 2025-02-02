@@ -16,6 +16,8 @@ use RuntimeException;
  */
 final class FileAPIClient {
 
+  private const RESULT_SUCCEEDED = 'succeeded';
+
   private string $fileAPIServerPath;
 
   public function __construct(string $file_api_server_path) {
@@ -41,9 +43,9 @@ final class FileAPIClient {
    *
    * @return void
    */
-  public function markPackagesReceived(): void {
+  public function deletePackages(): void {
     $response = $this->call('DELETE', 'packages');
-    if ('succeeded' !== ($response['result'] ?? '')) {
+    if (self::RESULT_SUCCEEDED !== ($response['result'] ?? '')) {
       throw new RuntimeException('Failed to send DELETE request.');
     }
   }

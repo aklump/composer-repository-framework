@@ -3,30 +3,37 @@ id: readme
 tags: ''
 -->
 
-# Private Packagist for In the Loft Studios
+# Composer Repository Framework
 
-This repository is for indexing unpublished Composer dependencies.
+A framework for building private Packagist-like repositories by In the Loft Studios.
 
-## Installation
+```shell
 
-1. Create a public server and domain to act as the `repository` entry in _composer.json_ files of the depending projects.
-2. Configure an SSH user on the server for publishing changes to the repository.
-3. Setup key-based authentication for publishing to the repository server.
-4. Copy _./install/config.sh_ to _./config.sh_; open _./config.sh_ and edit:
-    * Set `REPOSITORY_URL`, e.g. `https://packages.intheloftstudios.com`
-    * Set the SSH info for connecting to the repositry server.
-5. Copy _./install/satis.json_ to _./satis.json_
-    * Open _.satis.json_ and set `name` (e.g., `aklump/packages`) and `homepage`, which should match `REPOSITORY_URL` in _config.sh_.
-6. Copy _./install/.env_ to _web/.env_ and enter a strong value for `API_SECRET`.
-7. Make sure _.cache/_ and _web/_ directories are both writeable.
-8. Create a cronjob with the desired publish frequency that executes app/bin/on_cron.sh, e.g.
+```
+
+## Requirements
+
+* You must install on a public server.
+* The server must have Composer installed.
+
+## Installing
+
+* `{{ composer.create_project|raw }}`
+* Configure the webroot as _./web/_
+* Run `./bin/install.sh`
+* Follow instructions for replacing configuration tokens.
+* Create a cronjob with the desired publish frequency, e.g.,
     ```
-    */15 * * * 1-6 /Users/aklump/Code/Projects/InTheLoftStudios/InTheLoftStudios/site-packages/app/bin/on_cron.sh
+    */15 * * * 1-6 /PATH/TO/ROOT/bin/on_cron.php
     ```
 
 ## Adding a Package
 
-Create a github hook to this url `https://packages.intheloftstudios.com/api/event.php?secret={API_SECRET}` for the `push` action.
+Packages are adding by creating a Github webhook.
+
+* Navigate to the Github repository for the package you want to add.
+
+Create a github hook to this url `https://{repository_url}/api/event.php?secret={API_SECRET}` for the `push` action.
 
 ## Commands
 

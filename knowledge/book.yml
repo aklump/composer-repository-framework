@@ -9,8 +9,3 @@ chapters:
       - readme
       - publisher
       - distributor
-  -
-    id: repository
-    title: Repository
-    pages:
-      - repository_readme

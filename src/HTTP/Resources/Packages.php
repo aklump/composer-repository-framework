@@ -8,15 +8,23 @@ use AKlump\AnnotatedResponse\AnnotatedResponseInterface;
 use AKlump\Packages\HTTP\Error;
 use AKlump\Packages\Schedule;
 use AKlump\Packages\Sender\Github;
+use DateTimeInterface;
+use Monolog\Logger;
 
-final class Packages {
+final class Packages implements ResourceInterface {
 
   /**
    * @var \AKlump\Packages\Schedule
    */
   private Schedule $scheduler;
 
-  public function __construct(Schedule $scheduler) {
+  /**
+   * @var \Monolog\Logger
+   */
+  private Logger $logger;
+
+  public function __construct(Logger $logger, Schedule $scheduler) {
+    $this->logger = $logger;
     $this->scheduler = $scheduler;
   }
 
@@ -36,28 +44,39 @@ final class Packages {
       return (new Error())(400, 'No input provided.');
     }
 
-    $data = json_decode($raw_input, TRUE); // Decode JSON input into an associative array
+    $data = json_decode($raw_input, TRUE);
     if (json_last_error() !== JSON_ERROR_NONE) {
       return (new Error())(400, 'Invalid JSON payload.');
     }
 
-    $repositories = [];
+    $entries = [];
 
     $github = new Github();
     if ($github->shouldHandle($data)) {
-      $repositories[] = $github->getRepositoryEntry($data);
+      $entry = [
+        'date' => date_create('now', timezone_open('UTC'))->format(DateTimeInterface::ATOM),
+        'name' => $github->getPackageName($data),
+        'version' => $github->getPackageVersion($data),
+        'repositories' => [$github->getRepositoryEntry($data)],
+      ];
+      $entries[] = $entry;
+      $this->getLogger()
+        ->info('Github webhook received', [
+          'name' => $entry['name'],
+          'version' => $entry['version'],
+        ]);
     }
 
-    if (empty($repositories)) {
+    if (empty($entries)) {
       return (new Error())(400, 'Unknown event sender.');
     }
 
-    $was_added = $this->scheduler->add($repositories);
+    $was_added = $this->scheduler->add($entries);
     if ($was_added) {
       $response = new AnnotatedResponse();
       $response->setHttpStatus(202)
         ->setMessage('Repository queued for update.')
-        ->setData($repositories);
+        ->setData($entries);
 
       return $response;
     }
@@ -74,5 +93,9 @@ final class Packages {
       ->setMessage('Changed repository queue deleted.');
 
     return $response;
+  }
+
+  public function getLogger(): Logger {
+    return $this->logger;
   }
 }

@@ -4,7 +4,7 @@
 namespace AKlump\Packages;
 
 
-use AKlump\Packages\Helper\DedupeRepositories;
+use AKlump\Packages\Helper\DedupePackages;
 
 class Schedule {
 
@@ -14,13 +14,13 @@ class Schedule {
     $this->cacheDir = $cache_dir;
   }
 
-  public function add(array $repositories): bool {
+  public function add(array $packages): bool {
     $queue_path = $this->getQueuePath();
     if (file_exists($queue_path)) {
-      $repositories = $this->mergeRepositories($repositories);
+      $packages = $this->mergePackages($packages);
     }
 
-    return (bool) file_put_contents($queue_path, json_encode($repositories, JSON_UNESCAPED_SLASHES));
+    return (bool) file_put_contents($queue_path, json_encode($packages, JSON_UNESCAPED_SLASHES));
   }
 
   public function getQueuePath(): string {
@@ -31,12 +31,11 @@ class Schedule {
     return $this->cacheDir . '/changed.json';
   }
 
-  private function mergeRepositories(array $repositories): array {
+  private function mergePackages(array $packages): array {
     $queue_path = $this->getQueuePath();
     $queued = json_decode(file_get_contents($queue_path), TRUE);
+    $packages = array_merge($packages, $queued);
 
-    $repositories = array_merge($repositories, $queued);
-
-    return (new DedupeRepositories())($repositories);
+    return (new DedupePackages())($packages);
   }
 }

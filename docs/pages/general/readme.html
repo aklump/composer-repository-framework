@@ -4,9 +4,9 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-      <link rel="stylesheet" href="../../dist/node_modules/bootstrap/dist/css/bootstrap.css?ver=0.0.1">
-      <link rel="stylesheet" href="../../dist/dist/bootstrap_theme.css?ver=0.0.1">
-      <link rel="stylesheet" href="../../dist/node_modules/bootstrap-icons/font/bootstrap-icons.min.css?ver=0.0.1">
+      <link rel="stylesheet" href="../../dist/node_modules/bootstrap/dist/css/bootstrap.css?ver=0.0.2">
+      <link rel="stylesheet" href="../../dist/dist/bootstrap_theme.css?ver=0.0.2">
+      <link rel="stylesheet" href="../../dist/node_modules/bootstrap-icons/font/bootstrap-icons.min.css?ver=0.0.2">
     <title>Composer Repository Framework | packages.intheloftstudios</title>
 </head>
 <body class="my-5">
@@ -33,7 +33,7 @@
       </div>
       <div class="header__tags me-3">  </div>
       <div class="header__page-numbers flex-shrink-1">2
-        / 4</div>
+        / 2</div>
     </div>
   </div>
 </header>
@@ -43,19 +43,19 @@
     <article class="col">
       <h1 class="mb-4 text-primary">Composer Repository Framework</h1>
       <p>A framework for building private Packagist-like repositories by In the Loft Studios.</p>
-<pre><code class="shell">
-</code></pre>
 <h2>Requirements</h2>
 <ul>
 <li>You must install on a public server.</li>
 <li>The server must have Composer installed.</li>
+<li>Packages should be hosted on GitHub.</li>
 </ul>
 <h2>Installing</h2>
 <ul>
 <li><code>composer create-project aklump/composer-repository-framework:^0.0 app --repository="{\"type\":\"github\",\"url\": \"https://github.com/aklump/composer-repository-framework\"}"</code></li>
-<li>Configure the webroot as <em>./web/</em></li>
-<li>Run <code>./bin/install.sh</code></li>
+<li>Configure the webroot as <em>./app/web/</em></li>
+<li>Run <code>./app/bin/install.sh</code></li>
 <li>Follow instructions for replacing configuration tokens.</li>
+<li>Run <code>./app/bin/perms</code> to set the config perms.</li>
 <li>Create a cronjob with the desired publish frequency, e.g.,<pre><code>  */15 * * * 1-6 /PATH/TO/ROOT/bin/on_cron.php
 </code></pre>
 </li>
@@ -64,13 +64,16 @@
 <p>Packages are adding by creating a Github webhook.</p>
 <ul>
 <li>Navigate to the Github repository for the package you want to add.</li>
+<li>Create a webhook:<ul>
+<li>Set url to:  <code>https://{repository_url}/api/packages.php?secret={API_SECRET}</code></li>
+<li>Set action to: <code>push</code></li>
 </ul>
-<p>Create a github hook to this url <code>https://{repository_url}/api/event.php?secret={API_SECRET}</code> for the <code>push</code> action.</p>
-<h2>Commands</h2>
-<p>These commands may be used, but are generally not necessary.</p>
+</li>
+<li>Packages will appear after the next cron run. To accelerate the process manually execute <code>app/bin/on_cron.php</code></li>
+</ul>
+<h2>Usage</h2>
 <ul>
-<li><code>bin/rebuild.sh</code> Scans all packages for dependencies and builds the static dependency file.</li>
-<li><code>bin/publish.sh</code> or <code>bin/publish.sh -v</code> Push the existing dependency file to the repository server.</li>
+<li>Visit the https://{repository_url} and follow usage instructions.</li>
 </ul>
     </article>
   </div>
@@ -79,7 +82,7 @@
   <footer class="footer d-flex justify-content-center">
     <div class="flex-column justify-content-center">
               Version:
-        <strong>0.0.1</strong>
+        <strong>0.0.2</strong>
         &bull;
                     Last Update: <strong>2/1/2025</strong>
           </div>
@@ -104,9 +107,8 @@
        aria-controls="table-of-contents"><i class="bi
            bi-list-ol"></i></a>
     
-              <a href="publisher.html" class="btn nav__next-page js-nav__next-page
-    btn-primary"><i class="bi bi-file-earmark"></i> Publisher <i class="bi
-       bi-caret-right-fill"></i></a>
+              <span class="btn nav__next-page js-nav__next-page
+    btn-primary"></span>
   
     
               <span class="btn nav__next-chapter btn-secondary "></span>
@@ -147,20 +149,6 @@
               bg-info rounded-pill badge-sm"></span></a>
     </li>
   
-                                    <li data-page="publisher" value="3">
-      <a class="js-page-link" href="publisher.html">Publisher<span
-              class="js-search-score
-              badge
-              bg-info rounded-pill badge-sm"></span></a>
-    </li>
-  
-                                    <li data-page="distributor" value="4">
-      <a class="js-page-link" href="distributor.html">Distributor<span
-              class="js-search-score
-              badge
-              bg-info rounded-pill badge-sm"></span></a>
-    </li>
-  
                               </ol>
       </div>
         
@@ -173,14 +161,6 @@
   
                                 <li data-page="readme" value="2">
       <a class="js-page-link" href="readme.html">Composer Repository Framework</a>
-    </li>
-  
-                                <li data-page="publisher" value="3">
-      <a class="js-page-link" href="publisher.html">Publisher</a>
-    </li>
-  
-                                <li data-page="distributor" value="4">
-      <a class="js-page-link" href="distributor.html">Distributor</a>
     </li>
   
                   </ol>
@@ -205,19 +185,15 @@
                  data-tags="[]" href="changelog.html">Changelog</a>
                                                 <a class="list-group-item list-group-item-action"
                  data-tags="[]" href="readme.html">Composer Repository Framework</a>
-                                                <a class="list-group-item list-group-item-action"
-                 data-tags="[]" href="publisher.html">Publisher</a>
-                                                <a class="list-group-item list-group-item-action"
-                 data-tags="[]" href="distributor.html">Distributor</a>
                               </ul>
       </div>
     </div>
   </div>
 </div>
 
-  <script src="../../dist/node_modules/bootstrap/dist/js/bootstrap.min.js?ver=0.0.1"></script>
-  <script src="../../dist/lunr.js?ver=0.0.1"></script>
-  <script src="../../dist/knowledge.min.js?ver=0.0.1"></script>
+  <script src="../../dist/node_modules/bootstrap/dist/js/bootstrap.min.js?ver=0.0.2"></script>
+  <script src="../../dist/lunr.js?ver=0.0.2"></script>
+  <script src="../../dist/knowledge.min.js?ver=0.0.2"></script>
 
 </body>
 </html>

@@ -38,3 +38,5 @@ Packages are adding by creating a Github webhook.
 ## Usage
 
 * Visit the https://{repository_url} and follow usage instructions.
+
+{{ funding|raw }}

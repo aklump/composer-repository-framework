@@ -13,7 +13,7 @@ A framework for building private Packagist-like repositories by In the Loft Stud
 
 ## Installing
 
-* `composer create-project aklump/composer-repository-framework:@dev --repository="{\"type\":\"github\",\"url\": \"https://github.com/aklump/composer-repository-framework\"}"`
+* `composer create-project aklump/composer-repository-framework:^0.0 --repository="{\"type\":\"github\",\"url\": \"https://github.com/aklump/composer-repository-framework\"}"`
 * Configure the webroot as _./web/_
 * Run `./bin/install.sh`
 * Follow instructions for replacing configuration tokens.

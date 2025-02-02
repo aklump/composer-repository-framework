@@ -11,7 +11,6 @@
  * the resulting response in JSON format.
  *
  * Dependencies:
- *  - The bootstrap.php file for application initialization.
  *  - A Scheduler instance that manages scheduling tasks with a cache URI.
  *  - A Router instance that handles API routes.
  *
@@ -43,7 +42,7 @@ namespace AKlump\Packages;
 
 use AKlump\Packages\API\Router;
 
-require_once __DIR__ . '/bootstrap.php';
+require_once __DIR__ . '/_bootstrap.php';
 
 /** @var \Monolog\Logger $logger */
 

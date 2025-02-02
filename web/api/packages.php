@@ -14,7 +14,6 @@
  * - In case of an exception, an error response is generated.
  *
  * Dependencies:
- * - Requires bootstrap.php for application setup and configuration.
  * - Utilizes the Authenticate, Schedule, Router, and Error classes for handling API logic.
  *
  * Exception Handling:
@@ -30,21 +29,31 @@ use Exception;
 use AKlump\Packages\API\Router;
 use AKlump\Packages\HTTP\Authenticate;
 use AKlump\Packages\HTTP\Error;
+use RuntimeException;
 
-require_once __DIR__ . '/../../bootstrap.php';
+require_once __DIR__ . '/../../_bootstrap.php';
 
 /** @var \Monolog\Logger $logger */
 
 try {
-  (new Authenticate($_ENV['API_SECRET']))($_GET);
+  $request_body = file_get_contents('php://input');
+  authenticate();
   $scheduler = new Schedule(__DIR__ . '/../../' . Config::CACHE_DIR_BASENAME);
   $response = (new Router($logger, $scheduler))->handle(
     $_SERVER['REQUEST_METHOD'] ?? '',
     pathinfo(__FILE__, PATHINFO_FILENAME),
-    file_get_contents('php://input')
+    $request_body
   );
 }
 catch (Exception $exception) {
   $response = (new Error())($exception->getCode(), $exception->getMessage());
 }
 echo json_encode($response, JSON_UNESCAPED_SLASHES);
+
+function authenticate() {
+  global $request_body;
+  if (empty($_ENV['API_SECRET'])) {
+    throw new RuntimeException('Missing or empty API_SECRET.');
+  }
+  (new Authenticate($_ENV['API_SECRET']))(getallheaders(), $request_body);
+}

@@ -4,15 +4,6 @@
 /**
  * This file is intended to be triggered by a cron job.
  *
- * It processes repository changes detected via GitHub webhooks, updates the
- * `satis.json` file, and rebuilds the Composer repository.
- *
- * Workflow:
- * - Reads repository changes from the remote server queue.
- * - Updates and deduplicates entries in `satis.json`.
- * - Rebuilds and publishes the updated packages.
- * - Clears the server queue to prevent reprocessing.
- *
  * @package AKlump\PackagesITLS
  */
 
@@ -21,11 +12,9 @@ use AKlump\Packages\Satis\ParseRepositories;
 use AKlump\Packages\Satis\WriteRepositories;
 use AKlump\Packages\API\FileAPIClient;
 
-require __DIR__ . '/../bootstrap.php';
+require __DIR__ . '/../_bootstrap.php';
 
 /** @var \Monolog\Logger $logger */
-
-const SATIS_FILE_PATH = __DIR__ . '/../data/satis.json';
 
 $file_api = new FileAPIClient(__DIR__ . '/../cli_server.php');
 

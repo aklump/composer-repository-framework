@@ -1,7 +1,7 @@
 .DS_Store
-.cache
-.env
-data/*
+/.cache/
+/.env
+/data/*
 !data/.gitkeep
 composer.lock
 vendor/

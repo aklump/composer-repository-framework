@@ -8,6 +8,8 @@ rm packages.json &> /dev/null
 rm web/index.html &> /dev/null
 rm web/packages.json &> /dev/null
 rm know.log &> /dev/null
-rm data/satis.json
-rm .env
+rm data/satis.json &>/dev/null
+if [ -f .env ]; then
+  chmod 0644 .env && rm .env || exit 1
+fi
 exit 0

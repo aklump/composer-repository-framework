@@ -37,7 +37,6 @@ $class_loader = require_once $_composer_autoload_path;
 if (!defined('ROOT')) {
   define('ROOT', __DIR__);
 }
-
 define('SATIS_FILE_PATH', realpath(ROOT . '/data/.satis.json'));
 
 $dotenv = Dotenv::createImmutable(ROOT);

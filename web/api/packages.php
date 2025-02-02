@@ -31,7 +31,7 @@ use AKlump\Packages\HTTP\Authenticate;
 use AKlump\Packages\HTTP\Error;
 use RuntimeException;
 
-require_once __DIR__ . '/../../_bootstrap.php';
+require_once __DIR__ . '/../../_fw.bootstrap.php';
 
 /** @var \Monolog\Logger $logger */
 

@@ -4,10 +4,6 @@ cd "$__DIR__/.."
 # This may be set by composer create-project
 ! [[ "$ROOT" ]] && ROOT="$PWD"
 
-# Download dependencies.
-echo "✅ Gathering dependencies"
-composer install
-
 # Set all file permissions (must come AFTER composer install)
 echo "✅ Setting file permissions"
 chmod u+x ./bin/perms

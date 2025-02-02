@@ -12,7 +12,7 @@ use AKlump\Packages\Satis\ParseRepositories;
 use AKlump\Packages\Satis\WriteRepositories;
 use AKlump\Packages\API\FileAPIClient;
 
-require __DIR__ . '/../_bootstrap.php';
+require __DIR__ . '/../inc/_fw.bootstrap.php';
 
 /** @var \Monolog\Logger $logger */
 

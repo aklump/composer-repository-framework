@@ -4,6 +4,8 @@ cd "$__DIR__/.."
 # This may be set by composer create-project
 ! [[ "$ROOT" ]] && ROOT="$PWD"
 
+! [ -e "$ROOT/.env" ] && echo && echo "❌ Not installed; try \`bin/install.sh\`." && echo && exit 1
+
 function check_token() {
   local token="$1"
   local file="$2"

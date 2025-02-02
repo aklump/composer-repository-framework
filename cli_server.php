@@ -42,7 +42,7 @@ namespace AKlump\Packages;
 
 use AKlump\Packages\API\Router;
 
-require_once __DIR__ . '/_bootstrap.php';
+require __DIR__ . '/../inc/_fw.bootstrap.php';
 
 /** @var \Monolog\Logger $logger */
 

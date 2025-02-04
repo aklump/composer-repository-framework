@@ -6,7 +6,7 @@ namespace AKlump\Packages\HTTP;
 use AKlump\AnnotatedResponse\AnnotatedResponse;
 use AKlump\AnnotatedResponse\AnnotatedResponseInterface;
 
-class Error {
+class CreateError {
 
   public function __invoke(int $code, string $reason): AnnotatedResponseInterface {
     http_response_code($code);

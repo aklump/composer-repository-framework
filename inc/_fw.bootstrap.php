@@ -10,40 +10,29 @@ use Dotenv\Dotenv;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 
-// https://getcomposer.org/doc/articles/vendor-binaries.md#finding-the-composer-autoloader-from-a-binary
-if (isset($GLOBALS['_composer_autoload_path'])) {
-  // As of Composer 2.2...
-  $_composer_autoload_path = $GLOBALS['_composer_autoload_path'];
-}
-else {
-  // < Composer 2.2
-  foreach ([
-             __DIR__ . '/../../autoload.php',
-             __DIR__ . '/../vendor/autoload.php',
-             __DIR__ . '/vendor/autoload.php',
-           ] as $_composer_autoload_path) {
-    if (file_exists($_composer_autoload_path)) {
-      break;
-    }
+if (!defined('ROOT')) {
+  if (!empty($_ENV['ROOT'])) {
+    define('ROOT', $_ENV['ROOT']);
+  }
+  else {
+    define('ROOT', realpath(__DIR__ . '/..'));
   }
 }
 
+const SATIS_CANONICAL_PATH = ROOT . '/satis.json';
+const SATIS_FILE_PATH = ROOT . '/data/.satis.json';
+
+$_composer_autoload_path = ROOT . '/vendor/autoload.php';
 if (!file_exists($_composer_autoload_path)) {
-  throw new \RuntimeException(sprintf('Missing dependencies; have you tried ./bin/install.sh?'));
+  throw new RuntimeException(sprintf('Missing dependencies; have you tried %s/bin/install.sh?', ROOT));
 }
-
 $class_loader = require_once $_composer_autoload_path;
-
-if (!defined('ROOT')) {
-  define('ROOT', __DIR__);
-}
-define('SATIS_FILE_PATH', realpath(ROOT . '/data/.satis.json'));
 
 $dotenv = Dotenv::createImmutable(ROOT);
 $dotenv->load();
 
 $logger = new Logger('cron');
-$logger->pushHandler(new StreamHandler(__DIR__ . '/data/packages.log', Logger::DEBUG));
+$logger->pushHandler(new StreamHandler(ROOT . '/data/packages.log', Logger::DEBUG));
 
 if (!function_exists('getallheaders')) {
   function getallheaders() {

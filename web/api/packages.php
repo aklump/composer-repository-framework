@@ -14,7 +14,7 @@
  * - In case of an exception, an error response is generated.
  *
  * Dependencies:
- * - Utilizes the Authenticate, Schedule, Router, and Error classes for handling API logic.
+ * - Utilizes the Authenticate, PackageChangeManager, Router, and CreateError classes for handling API logic.
  *
  * Exception Handling:
  * - Any exceptions thrown during processing are caught, and an error response is generated with the exception's code and message.
@@ -25,32 +25,41 @@
 
 namespace AKlump\Packages;
 
-use Exception;
+use AKlump\Packages\API\ResourceRepository;
 use AKlump\Packages\API\Router;
+use AKlump\Packages\Config\Constants;
 use AKlump\Packages\HTTP\Authenticate;
-use AKlump\Packages\HTTP\Error;
+use AKlump\Packages\HTTP\CreateError;
+use Exception;
 use RuntimeException;
 
-require_once __DIR__ . '/../../_fw.bootstrap.php';
+require_once __DIR__ . '/../../inc/_fw.bootstrap.php';
 
 /** @var \Monolog\Logger $logger */
 
 try {
   $request_body = file_get_contents('php://input');
   authenticate();
-  $scheduler = new Schedule(__DIR__ . '/../../' . Config::CACHE_DIR_BASENAME);
-  $response = (new Router($logger, $scheduler))->handle(
+  $package_change_manager = new PackageChangeManager(ROOT . '/' . Constants::ROOT_RELATIVE_CACHE_PATH);
+  $response = (new Router(
+    new ResourceRepository(),
+    $package_change_manager,
+    new ChangeReporterRepository(),
+    $logger
+  ))->handle(
     $_SERVER['REQUEST_METHOD'] ?? '',
     pathinfo(__FILE__, PATHINFO_FILENAME),
     $request_body
   );
 }
 catch (Exception $exception) {
-  $response = (new Error())($exception->getCode(), $exception->getMessage());
+  $response = (new CreateError())($exception->getCode(), $exception->getMessage());
 }
 echo json_encode($response, JSON_UNESCAPED_SLASHES);
 
 function authenticate() {
+  // TODO Fix this
+  return;
   global $request_body;
   if (empty($_ENV['API_SECRET'])) {
     throw new RuntimeException('Missing or empty API_SECRET.');

@@ -1,0 +1,162 @@
+[
+  {
+    "name": "0.0.16",
+    "zipball_url": "https://api.github.com/repos/aklump/easy-perms/zipball/refs/tags/0.0.16",
+    "tarball_url": "https://api.github.com/repos/aklump/easy-perms/tarball/refs/tags/0.0.16",
+    "commit": {
+      "sha": "fe40396c0be180cdb252984823bb61b0a06dd1e4",
+      "url": "https://api.github.com/repos/aklump/easy-perms/commits/fe40396c0be180cdb252984823bb61b0a06dd1e4"
+    },
+    "node_id": "REF_kwDOKbsNgbByZWZzL3RhZ3MvMC4wLjE2"
+  },
+  {
+    "name": "0.0.15",
+    "zipball_url": "https://api.github.com/repos/aklump/easy-perms/zipball/refs/tags/0.0.15",
+    "tarball_url": "https://api.github.com/repos/aklump/easy-perms/tarball/refs/tags/0.0.15",
+    "commit": {
+      "sha": "4baf7744155bf68814bc650369f7a37c5529fcb9",
+      "url": "https://api.github.com/repos/aklump/easy-perms/commits/4baf7744155bf68814bc650369f7a37c5529fcb9"
+    },
+    "node_id": "REF_kwDOKbsNgbByZWZzL3RhZ3MvMC4wLjE1"
+  },
+  {
+    "name": "0.0.14",
+    "zipball_url": "https://api.github.com/repos/aklump/easy-perms/zipball/refs/tags/0.0.14",
+    "tarball_url": "https://api.github.com/repos/aklump/easy-perms/tarball/refs/tags/0.0.14",
+    "commit": {
+      "sha": "c2782ccaa8c7a90db983dfc6b4ea369b7d8c3e2d",
+      "url": "https://api.github.com/repos/aklump/easy-perms/commits/c2782ccaa8c7a90db983dfc6b4ea369b7d8c3e2d"
+    },
+    "node_id": "REF_kwDOKbsNgbByZWZzL3RhZ3MvMC4wLjE0"
+  },
+  {
+    "name": "0.0.13",
+    "zipball_url": "https://api.github.com/repos/aklump/easy-perms/zipball/refs/tags/0.0.13",
+    "tarball_url": "https://api.github.com/repos/aklump/easy-perms/tarball/refs/tags/0.0.13",
+    "commit": {
+      "sha": "e5194b5befc3554106b95c6c146210c0aa0b71ee",
+      "url": "https://api.github.com/repos/aklump/easy-perms/commits/e5194b5befc3554106b95c6c146210c0aa0b71ee"
+    },
+    "node_id": "REF_kwDOKbsNgbByZWZzL3RhZ3MvMC4wLjEz"
+  },
+  {
+    "name": "0.0.12",
+    "zipball_url": "https://api.github.com/repos/aklump/easy-perms/zipball/refs/tags/0.0.12",
+    "tarball_url": "https://api.github.com/repos/aklump/easy-perms/tarball/refs/tags/0.0.12",
+    "commit": {
+      "sha": "86191c7f4dadf2d8f6d64f0b5784ba64547c8293",
+      "url": "https://api.github.com/repos/aklump/easy-perms/commits/86191c7f4dadf2d8f6d64f0b5784ba64547c8293"
+    },
+    "node_id": "REF_kwDOKbsNgbByZWZzL3RhZ3MvMC4wLjEy"
+  },
+  {
+    "name": "0.0.11",
+    "zipball_url": "https://api.github.com/repos/aklump/easy-perms/zipball/refs/tags/0.0.11",
+    "tarball_url": "https://api.github.com/repos/aklump/easy-perms/tarball/refs/tags/0.0.11",
+    "commit": {
+      "sha": "3a510b6fcdf0951795b3f5687b77fe2bf0d9ca79",
+      "url": "https://api.github.com/repos/aklump/easy-perms/commits/3a510b6fcdf0951795b3f5687b77fe2bf0d9ca79"
+    },
+    "node_id": "REF_kwDOKbsNgbByZWZzL3RhZ3MvMC4wLjEx"
+  },
+  {
+    "name": "0.0.10",
+    "zipball_url": "https://api.github.com/repos/aklump/easy-perms/zipball/refs/tags/0.0.10",
+    "tarball_url": "https://api.github.com/repos/aklump/easy-perms/tarball/refs/tags/0.0.10",
+    "commit": {
+      "sha": "7a64f6af7d6d0a511b23f6b6a65717c71f51e1dc",
+      "url": "https://api.github.com/repos/aklump/easy-perms/commits/7a64f6af7d6d0a511b23f6b6a65717c71f51e1dc"
+    },
+    "node_id": "REF_kwDOKbsNgbByZWZzL3RhZ3MvMC4wLjEw"
+  },
+  {
+    "name": "0.0.9",
+    "zipball_url": "https://api.github.com/repos/aklump/easy-perms/zipball/refs/tags/0.0.9",
+    "tarball_url": "https://api.github.com/repos/aklump/easy-perms/tarball/refs/tags/0.0.9",
+    "commit": {
+      "sha": "fd03ef359204f9c632fabb006e87174273004d48",
+      "url": "https://api.github.com/repos/aklump/easy-perms/commits/fd03ef359204f9c632fabb006e87174273004d48"
+    },
+    "node_id": "REF_kwDOKbsNga9yZWZzL3RhZ3MvMC4wLjk"
+  },
+  {
+    "name": "0.0.8",
+    "zipball_url": "https://api.github.com/repos/aklump/easy-perms/zipball/refs/tags/0.0.8",
+    "tarball_url": "https://api.github.com/repos/aklump/easy-perms/tarball/refs/tags/0.0.8",
+    "commit": {
+      "sha": "93727b872b6b685f48f03ea3ab676ad79a527d85",
+      "url": "https://api.github.com/repos/aklump/easy-perms/commits/93727b872b6b685f48f03ea3ab676ad79a527d85"
+    },
+    "node_id": "REF_kwDOKbsNga9yZWZzL3RhZ3MvMC4wLjg"
+  },
+  {
+    "name": "0.0.7",
+    "zipball_url": "https://api.github.com/repos/aklump/easy-perms/zipball/refs/tags/0.0.7",
+    "tarball_url": "https://api.github.com/repos/aklump/easy-perms/tarball/refs/tags/0.0.7",
+    "commit": {
+      "sha": "442217627fdef121216f522e89a3986542512da1",
+      "url": "https://api.github.com/repos/aklump/easy-perms/commits/442217627fdef121216f522e89a3986542512da1"
+    },
+    "node_id": "REF_kwDOKbsNga9yZWZzL3RhZ3MvMC4wLjc"
+  },
+  {
+    "name": "0.0.6",
+    "zipball_url": "https://api.github.com/repos/aklump/easy-perms/zipball/refs/tags/0.0.6",
+    "tarball_url": "https://api.github.com/repos/aklump/easy-perms/tarball/refs/tags/0.0.6",
+    "commit": {
+      "sha": "f89d52c53fdbb3f7be5e2d62a8d9779df0ffe72d",
+      "url": "https://api.github.com/repos/aklump/easy-perms/commits/f89d52c53fdbb3f7be5e2d62a8d9779df0ffe72d"
+    },
+    "node_id": "REF_kwDOKbsNga9yZWZzL3RhZ3MvMC4wLjY"
+  },
+  {
+    "name": "0.0.5",
+    "zipball_url": "https://api.github.com/repos/aklump/easy-perms/zipball/refs/tags/0.0.5",
+    "tarball_url": "https://api.github.com/repos/aklump/easy-perms/tarball/refs/tags/0.0.5",
+    "commit": {
+      "sha": "b16b5d6b9f80c5c5e582d96e4eedaec2f74b674f",
+      "url": "https://api.github.com/repos/aklump/easy-perms/commits/b16b5d6b9f80c5c5e582d96e4eedaec2f74b674f"
+    },
+    "node_id": "REF_kwDOKbsNga9yZWZzL3RhZ3MvMC4wLjU"
+  },
+  {
+    "name": "0.0.4",
+    "zipball_url": "https://api.github.com/repos/aklump/easy-perms/zipball/refs/tags/0.0.4",
+    "tarball_url": "https://api.github.com/repos/aklump/easy-perms/tarball/refs/tags/0.0.4",
+    "commit": {
+      "sha": "e315faf1de42ef538be528122611cc1f1174bf69",
+      "url": "https://api.github.com/repos/aklump/easy-perms/commits/e315faf1de42ef538be528122611cc1f1174bf69"
+    },
+    "node_id": "REF_kwDOKbsNga9yZWZzL3RhZ3MvMC4wLjQ"
+  },
+  {
+    "name": "0.0.3",
+    "zipball_url": "https://api.github.com/repos/aklump/easy-perms/zipball/refs/tags/0.0.3",
+    "tarball_url": "https://api.github.com/repos/aklump/easy-perms/tarball/refs/tags/0.0.3",
+    "commit": {
+      "sha": "b2a19f930e618d312173e583abeda5b66682f0d5",
+      "url": "https://api.github.com/repos/aklump/easy-perms/commits/b2a19f930e618d312173e583abeda5b66682f0d5"
+    },
+    "node_id": "REF_kwDOKbsNga9yZWZzL3RhZ3MvMC4wLjM"
+  },
+  {
+    "name": "0.0.2",
+    "zipball_url": "https://api.github.com/repos/aklump/easy-perms/zipball/refs/tags/0.0.2",
+    "tarball_url": "https://api.github.com/repos/aklump/easy-perms/tarball/refs/tags/0.0.2",
+    "commit": {
+      "sha": "069f0311e0a6c08472189c1d6a18100e77aa6695",
+      "url": "https://api.github.com/repos/aklump/easy-perms/commits/069f0311e0a6c08472189c1d6a18100e77aa6695"
+    },
+    "node_id": "REF_kwDOKbsNga9yZWZzL3RhZ3MvMC4wLjI"
+  },
+  {
+    "name": "0.0.1",
+    "zipball_url": "https://api.github.com/repos/aklump/easy-perms/zipball/refs/tags/0.0.1",
+    "tarball_url": "https://api.github.com/repos/aklump/easy-perms/tarball/refs/tags/0.0.1",
+    "commit": {
+      "sha": "3b6390ea20e3ee68435e023a1eac861f76da5649",
+      "url": "https://api.github.com/repos/aklump/easy-perms/commits/3b6390ea20e3ee68435e023a1eac861f76da5649"
+    },
+    "node_id": "REF_kwDOKbsNga9yZWZzL3RhZ3MvMC4wLjE"
+  }
+]

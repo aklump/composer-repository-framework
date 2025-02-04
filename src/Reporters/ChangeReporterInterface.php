@@ -1,9 +1,11 @@
 <?php
 // SPDX-License-Identifier: BSD-3-Clause
 
-namespace AKlump\Packages\Sender;
+namespace AKlump\Packages\Reporters;
 
-interface EventSenderInterface {
+interface ChangeReporterInterface {
+
+  public function getName(): string;
 
   /**
    * @param array $request The request data containing sender/repository info.
@@ -17,7 +19,7 @@ interface EventSenderInterface {
   /**
    * @param array $request The request data containing sender/repository info.
    *
-   * @return array Array to add to "repositories" in composer.json.
+   * @return array Array to reportChanges to "repositories" in composer.json.
    *
    */
   public function getRepositoryEntry(array $request): array;

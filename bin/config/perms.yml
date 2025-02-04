@@ -20,5 +20,4 @@ executable:
   - ../../bin/perms
   - ../../bin/*.sh
   - ../../bin/*.php
-  - ../../cli_server.php
   - ../../vendor/bin/*

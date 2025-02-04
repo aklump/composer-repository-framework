@@ -3,19 +3,21 @@
 
 namespace AKlump\Packages\Helper;
 
+/**
+ * Remove duplicate packages from array by `repository.url`.
+ */
 class DedupePackages {
 
-  public function __invoke(array $repositories): array {
+  public function __invoke(array &$packages): void {
     $seen = [];
     $deduped = [];
-    foreach ($repositories as $repository) {
-      $key = $repository['repositories'][0]['url'] ?? '';
+    foreach ($packages as $package) {
+      $key = $package['repository']['url'] ?? '';
       if ($key && !in_array($key, $seen)) {
-        $deduped[] = $repository;
+        $deduped[] = $package;
         $seen[] = $key;
       }
     }
-
-    return $deduped;
+    $packages = $deduped;
   }
 }

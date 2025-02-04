@@ -4,31 +4,54 @@
 namespace AKlump\Packages\API;
 
 use AKlump\AnnotatedResponse\AnnotatedResponseInterface;
+use AKlump\Packages\API\Resource\PackagesResource;
+use AKlump\Packages\ChangeReporterRepositoryInterface;
+use AKlump\Packages\HTTP\CreateError;
+use AKlump\Packages\PackageChangeManager;
 use Exception;
-use AKlump\Packages\Schedule;
-use AKlump\Packages\HTTP\Resources\Packages;
-use AKlump\Packages\HTTP\Error;
-use Monolog\Logger;
-use RuntimeException;
+use Psr\Log\LoggerInterface;
 
 class Router {
 
-  private Schedule $scheduler;
+  private PackageChangeManager $packageChangeManager;
 
-  private Logger $logger;
+  private LoggerInterface $logger;
 
-  public function __construct(Logger $logger, Schedule $scheduler) {
+  /**
+   * @var \AKlump\Packages\ChangeReporterRepositoryInterface
+   */
+  private ChangeReporterRepositoryInterface $changeReporterRepository;
+
+  /**
+   * @var \AKlump\Packages\API\ResourceRepository
+   */
+  private ResourceRepository $resourceRepository;
+
+  public function __construct(
+    ResourceRepository $resource_repository,
+    PackageChangeManager $package_change_manager,
+    ChangeReporterRepositoryInterface $change_reporter_repository,
+    LoggerInterface $logger
+  ) {
+    $this->resourceRepository = $resource_repository;
+    $this->packageChangeManager = $package_change_manager;
+    $this->changeReporterRepository = $change_reporter_repository;
     $this->logger = $logger;
-    $this->scheduler = $scheduler;
   }
 
-  public function handle(string $method, string $route, string $content): AnnotatedResponseInterface {
+  public function handle(string $method, string $route, string $content = ''): AnnotatedResponseInterface {
+
+    $controller = $this->resourceRepository->getResourceController($route, $this->packageChangeManager, $this->logger);
+    if (empty($controller)) {
+      return (new CreateError())(404, sprintf('Invalid route: %s', $route));
+    }
+
+    /** @var PackagesResource $controller */
+    if (method_exists($controller, 'setChangeReporterRepository')) {
+      $controller->setChangeReporterRepository($this->changeReporterRepository);
+    }
+
     try {
-      $controllers = $this->getControllers();
-      if (!isset($controllers[$route])) {
-        throw new RuntimeException(sprintf('Invalid route: %s', $route), 404);
-      }
-      $controller = new $controllers[$route]($this->logger, $this->scheduler);
       switch ($method) {
         case 'GET':
           $response = $controller->get();
@@ -41,23 +64,18 @@ class Router {
         case 'DELETE':
           $response = $controller->delete();
           break;
-
-        default:
-          $response = (new Error())(405, 'Invalid request method.');
-          break;
       }
     }
-    catch (Exception $exception) {
-      $response = (new Error())($exception->getCode(), $exception->getMessage());
+    catch (Exception $e) {
+      $this->logger->error($e->getMessage(), ['exception' => $e]);
+      $response = (new CreateError())(500, 'Internal server error.');
+    }
+
+    if (empty($response)) {
+      $response = (new CreateError())(405, sprintf('Invalid request method: %s', $method));
     }
 
     return $response;
-  }
-
-  private function getControllers(): array {
-    return [
-      'packages' => Packages::class,
-    ];
   }
 
 }

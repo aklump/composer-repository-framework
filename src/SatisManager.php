@@ -1,9 +1,8 @@
 <?php
-// SPDX-License-Identifier: BSD-3-Clause
 
-namespace AKlump\Packages\Satis;
+namespace AKlump\Packages;
 
-trait HasSatisTrait {
+class SatisManager {
 
   private string $satis;
 
@@ -12,7 +11,13 @@ trait HasSatisTrait {
   }
 
   public function load(): array {
-    return json_decode(file_get_contents($this->satis), TRUE) ?? [];
+    $data = [];
+    if (file_exists($this->satis)) {
+      $data = json_decode(file_get_contents($this->satis), TRUE) ?? [];
+    }
+    $data += ['repositories' => []];
+
+    return $data;
   }
 
   public function save(array $data) {

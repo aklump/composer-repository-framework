@@ -7,39 +7,41 @@
  * @package AKlump\PackagesITLS
  */
 
+use AKlump\Packages\Config\Constants;
 use AKlump\Packages\Helper\DedupeRepositories;
-use AKlump\Packages\Satis\ParseRepositories;
-use AKlump\Packages\Satis\WriteRepositories;
-use AKlump\Packages\API\FileAPIClient;
+use AKlump\Packages\PackageChangeManager;
+use AKlump\Packages\SatisManager;
 
 require __DIR__ . '/../inc/_fw.bootstrap.php';
 
 /** @var \Monolog\Logger $logger */
 
-$file_api = new FileAPIClient(__DIR__ . '/../cli_server.php');
-
-$changed_packages = $file_api->getPackages();
+$package_change_manager = new PackageChangeManager(ROOT . '/' . Constants::ROOT_RELATIVE_CACHE_PATH);
+$changed_packages = $package_change_manager->getChangedPackages();
 if (empty($changed_packages)) {
+  echo 'No new package changes.' . PHP_EOL;
   // The server has not received any repository change hooks.  Nothing to do.
   exit(1);
 }
 
-$changed_dependencies = [];
+$newly_changed_repositories = [];
 foreach ($changed_packages as $changed_package) {
-  $changed_dependencies = array_merge($changed_dependencies, $changed_package['repositories']);
+  $newly_changed_repositories = array_merge($newly_changed_repositories, [$changed_package['repository']]);
 }
 
 // Make sure we have all reporting repositories in our satis.json file.
-$repositories = (new ParseRepositories(SATIS_FILE_PATH))();
-$repositories = array_merge($repositories, $changed_dependencies);
-$repositories = (new DedupeRepositories())($repositories);
-(new WriteRepositories(SATIS_FILE_PATH))($repositories);
+$satis_manager = new SatisManager(SATIS_FILE_PATH);
+$satis_content = $satis_manager->load();
+$satis_content['repositories'] = array_merge($satis_content['repositories'], $newly_changed_repositories);
+(new DedupeRepositories())($satis_content['repositories']);
+$satis_manager->save($satis_content);
 
-$logger->info('Repository rebuilt', ['packages' => array_column($repositories, 'url')]);
+$logger->info('Repository rebuilt', ['packages' => array_column($satis_content['repositories'], 'url')]);
 
-system(__DIR__ . '/rebuild.sh', $result_code);
+// TODO Can't we just require this?
+system(ROOT . '/bin/rebuild.php', $result_code);
 if ($result_code === 0) {
   // Do this so that next cron run will not repeat work already done.
-  $file_api->deletePackages();
+  $package_change_manager->clearAll();
 }
 

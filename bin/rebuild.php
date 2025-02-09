@@ -45,4 +45,10 @@ if (0 !== $result_code) {
 echo PHP_EOL;
 echo '📦 Package repository rebuilt.' . PHP_EOL;
 echo PHP_EOL;
+
+echo '👉 Next step: Open and review...' . PHP_EOL;
+echo PHP_EOL;
+echo '🔲 ' . ROOT . '/web/index.html' . PHP_EOL;
+echo PHP_EOL;
+
 exit(0);

@@ -7,7 +7,7 @@
       <link rel="stylesheet" href="../../dist/node_modules/bootstrap/dist/css/bootstrap.css?ver=0.0.2">
       <link rel="stylesheet" href="../../dist/dist/bootstrap_theme.css?ver=0.0.2">
       <link rel="stylesheet" href="../../dist/node_modules/bootstrap-icons/font/bootstrap-icons.min.css?ver=0.0.2">
-    <title>Composer Repository Framework | packages.intheloftstudios</title>
+    <title>Composer Repository Constants | packages.intheloftstudios</title>
 </head>
 <body class="my-5">
 
@@ -41,14 +41,42 @@
 <main class="container-md flex-column">
   <div class="row mb-5 pt-5">
     <article class="col">
-      <h1 class="mb-4 text-primary">Composer Repository Framework</h1>
+      <h1 class="mb-4 text-primary">Composer Repository Constants</h1>
       <p>A framework for building private Packagist-like repositories by In the Loft Studios.</p>
 <h2>Requirements</h2>
 <ul>
 <li>You must install on a public server.</li>
 <li>The server must have Composer installed.</li>
-<li>Packages should be hosted on GitHub.</li>
+<li>PackagesResource should be hosted on GitHub.</li>
 </ul>
+<h2>Install with Composer</h2>
+<ol>
+<li><p>Because this is an unpublished package, you must define it's repository in
+your project's <em>composer.json</em> file. Add the following to <em>composer.json</em> in
+the <code>repositories</code> array:</p>
+<pre><code class="json"> {
+  "type": "github",
+  "url": "https://github.com/aklump/annotated-response"
+ },
+ {
+  "type": "github",
+  "url": "https://github.com/aklump/gitignore"
+ },
+ {
+  "type": "github",
+  "url": "https://github.com/aklump/easy-perms"
+ },
+ {
+  "type": "github",
+  "url": "https://github.com/aklump/composer-repository-framework"
+ }
+</code></pre>
+</li>
+<li><p>Require this package:</p>
+<pre><code> composer require aklump/composer-repository-framework:^0.0
+</code></pre>
+</li>
+</ol>
 <h2>Installing</h2>
 <ul>
 <li><code>composer create-project aklump/composer-repository-framework:^0.0 app --repository="{\"type\":\"github\",\"url\": \"https://github.com/aklump/composer-repository-framework\"}"</code></li>
@@ -56,20 +84,32 @@
 <li>Run <code>./app/bin/install.sh</code></li>
 <li>Follow instructions for replacing configuration tokens.</li>
 <li>Run <code>./app/bin/perms</code> to set the config perms.</li>
+<li><code>app/bin/rebuild.sh</code></li>
+<li>Visit the repository URL, confirming it loads.</li>
+</ul>
+<h2>Add a Package</h2>
+<p>PackagesResource are adding by creating a GithubReporter webhook.</p>
+<ul>
+<li>Navigate to the GithubReporter repository for the package you want to reportChanges.</li>
+<li>Add a webhook:<ul>
+<li>Set url to:  <code>https://{repository_url}/api/packages.php</code></li>
+<li>Content type: <code>application/json</code></li>
+<li>Set the Secret</li>
+<li>Let me select individual events<ul>
+<li>Branch or tag creation</li>
+<li>Branch or tag deletion</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>app/bin/on_cron.sh</code></li>
+<li>PackagesResource will appear after the next cron run. To accelerate the process manually execute <code>app/bin/on_cron.php</code></li>
+</ul>
+<h2>Finish Installation</h2>
+<ul>
 <li>Create a cronjob with the desired publish frequency, e.g.,<pre><code>  */15 * * * 1-6 /PATH/TO/app/bin/on_cron.php
 </code></pre>
 </li>
-</ul>
-<h2>Adding a Package</h2>
-<p>Packages are adding by creating a Github webhook.</p>
-<ul>
-<li>Navigate to the Github repository for the package you want to add.</li>
-<li>Create a webhook:<ul>
-<li>Set url to:  <code>https://{repository_url}/api/packages.php?secret={API_SECRET}</code></li>
-<li>Set action to: <code>push</code></li>
-</ul>
-</li>
-<li>Packages will appear after the next cron run. To accelerate the process manually execute <code>app/bin/on_cron.php</code></li>
 </ul>
 <h2>Usage</h2>
 <ul>
@@ -90,7 +130,7 @@
               Version:
         <strong>0.0.2</strong>
         &bull;
-                    Last Update: <strong>2/1/2025</strong>
+                    Last Update: <strong>2/9/2025</strong>
           </div>
   </footer>
 
@@ -149,7 +189,7 @@
     </li>
   
                                     <li data-page="readme" value="2">
-      <a class="js-page-link" href="readme.html">Composer Repository Framework<span
+      <a class="js-page-link" href="readme.html">Composer Repository Constants<span
               class="js-search-score
               badge
               bg-info rounded-pill badge-sm"></span></a>
@@ -166,7 +206,7 @@
     </li>
   
                                 <li data-page="readme" value="2">
-      <a class="js-page-link" href="readme.html">Composer Repository Framework</a>
+      <a class="js-page-link" href="readme.html">Composer Repository Constants</a>
     </li>
   
                   </ol>
@@ -190,7 +230,7 @@
                                     <a class="list-group-item list-group-item-action"
                  data-tags="[]" href="changelog.html">Changelog</a>
                                                 <a class="list-group-item list-group-item-action"
-                 data-tags="[]" href="readme.html">Composer Repository Framework</a>
+                 data-tags="[]" href="readme.html">Composer Repository Constants</a>
                               </ul>
       </div>
     </div>

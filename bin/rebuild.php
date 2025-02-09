@@ -26,6 +26,8 @@ if (!defined('SATIS_FILE_PATH')
 $canonical_data = json_decode(file_get_contents(SATIS_CANONICAL_PATH), TRUE);
 $satis_manager = new SatisManager(SATIS_FILE_PATH);
 $satis_data = $satis_manager->load();
+
+// Overwrite with canonical data as appropriate.
 $satis_data['name'] = $canonical_data['name'];
 $satis_data['homepage'] = $canonical_data['homepage'];
 $satis_data['require-all'] = TRUE;

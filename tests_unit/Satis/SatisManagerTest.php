@@ -16,28 +16,51 @@ class SatisManagerTest extends TestCase {
   function dataFortestLoadProvider(): array {
     $tests = [];
     $tests[] = [
-      '[{"name":"aklump/json-schema-merge","version":"","repositories":[{"type":"github","url":"https://github.com/aklump/json-schema-merge"}]}]',
+      '{"name":"aklump/packages","homepage":"https://packages.intheloftstudios.com"}',
       [
-        [
-          'name' => 'aklump/json-schema-merge',
-          'version' => '',
-          'repositories' =>
+        'name' => 'aklump/packages',
+        'homepage' => 'https://packages.intheloftstudios.com',
+        'require-all' => TRUE,
+        'repositories' => [],
+      ],
+    ];
+    $tests[] = [
+      '{"name":"aklump/packages","homepage":"https://packages.intheloftstudios.com","repositories":[{"type":"github","url":"https://github.com/aklump/json-schema-merge"}]}',
+      [
+        'name' => 'aklump/packages',
+        'homepage' => 'https://packages.intheloftstudios.com',
+        'require-all' => TRUE,
+        'repositories' =>
+          [
             [
-              [
-                'type' => 'github',
-                'url' => 'https://github.com/aklump/json-schema-merge',
-              ],
+              'type' => 'github',
+              'url' => 'https://github.com/aklump/json-schema-merge',
             ],
-        ],
+          ],
+      ],
+    ];
+    $tests[] = [
+      '{"name":"aklump/packages","homepage":"https://packages.intheloftstudios.com","require-all":true,"repositories":[{"type":"github","url":"https://github.com/aklump/json-schema-merge"}]}',
+      [
+        'name' => 'aklump/packages',
+        'homepage' => 'https://packages.intheloftstudios.com',
+        'require-all' => TRUE,
+        'repositories' =>
+          [
+            [
+              'type' => 'github',
+              'url' => 'https://github.com/aklump/json-schema-merge',
+            ],
+          ],
       ],
     ];
     $tests[] = [
       '{}',
-      [],
+      SatisManager::DEFAULTS,
     ];
     $tests[] = [
       '[]',
-      [],
+      SatisManager::DEFAULTS,
     ];
 
     return $tests;
@@ -53,7 +76,9 @@ class SatisManagerTest extends TestCase {
     $this->assertFileDoesNotExist($path_to_satis);
 
     $satis_manager = new SatisManager($path_to_satis);
-    $this->assertEmpty($satis_manager->load(), 'Assert works when file does not exist.');
+    $data = $satis_manager->load();
+    $this->assertArrayHasKey('repositories', $data);
+    $this->assertEmpty($data['repositories'], 'Assert works when file does not exist.');
 
     $satis_manager->save(json_decode($json, TRUE));
     $packages = $satis_manager->load();

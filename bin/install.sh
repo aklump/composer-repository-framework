@@ -26,16 +26,18 @@ echo
 
 # Copy over all configuration and instruct token replacement.
 echo "✅ Creating configuration"
-FILE="${ROOT}/.env"
-! [ -f "$FILE" ] && cp -v ${FRAMEWORK_DIR}/install/.env "$FILE"
+env_file="${ROOT}/.env"
+! [ -f "$env_file" ] && cp -v ${FRAMEWORK_DIR}/install/.env "$env_file"
 
-FILE="${ROOT}/satis.json"
-! [ -f "$FILE" ] &&  cp -v ${FRAMEWORK_DIR}/install/satis.json "$FILE"
-echo
-
-echo
-echo "👉Next Step: Edit onfig: $FILE"
+satis_file="${ROOT}/satis.json"
+! [ -f "$satis_file" ] &&  cp -v ${FRAMEWORK_DIR}/install/satis.json "$satis_file"
 echo
 
 source ${FRAMEWORK_DIR}/bin/check_config.sh
 
+echo
+echo "👉 Next Step: Open and edit config files..."
+echo
+echo "🔲 $env_file"
+echo "🔲 $satis_file"
+echo

@@ -33,5 +33,9 @@ FILE="${ROOT}/satis.json"
 ! [ -f "$FILE" ] &&  cp -v ${FRAMEWORK_DIR}/install/satis.json "$FILE"
 echo
 
+echo
+echo "👉Next Step: Edit onfig: $FILE"
+echo
+
 source ${FRAMEWORK_DIR}/bin/check_config.sh
 

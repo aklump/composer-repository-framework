@@ -11,7 +11,7 @@ use AKlump\Packages\Helper\DedupeRepositories;
 use AKlump\Packages\PackageChangeManager;
 use AKlump\Packages\SatisManager;
 
-require __DIR__ . '/../inc/_fw.bootstrap.php';
+require_once __DIR__ . '/../inc/_fw.bootstrap.php';
 
 /** @var \Monolog\Logger $logger */
 
@@ -19,8 +19,9 @@ $package_change_manager = new PackageChangeManager(ROOT . '/' . Constants::ROOT_
 $changed_packages = $package_change_manager->getChangedPackages();
 if (empty($changed_packages)) {
   echo 'No new package changes.' . PHP_EOL;
+
   // The server has not received any repository change hooks.  Nothing to do.
-  exit(1);
+  return 1;
 }
 
 $newly_changed_repositories = [];
@@ -35,12 +36,15 @@ $satis_content['repositories'] = array_merge($satis_content['repositories'], $ne
 (new DedupeRepositories())($satis_content['repositories']);
 $satis_manager->save($satis_content);
 
-$logger->info('Repository rebuilt', ['packages' => array_column($satis_content['repositories'], 'url')]);
-
-// TODO Can't we just require this?
-system(ROOT . '/bin/rebuild.php', $result_code);
+$result_code = include __DIR__ . '/rebuild.php';
 if ($result_code === 0) {
+  $logger->info('Repository rebuilt', ['packages' => array_column($satis_content['repositories'], 'url')]);
   // Do this so that next cron run will not repeat work already done.
   $package_change_manager->clearAll();
 }
+else {
+  $logger->error('Failed to rebuild repository', ['packages' => array_column($satis_content['repositories'], 'url')]);
+}
+
+return $result_code;
 

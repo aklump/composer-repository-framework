@@ -8,7 +8,7 @@
 
 use AKlump\Packages\SatisManager;
 
-require __DIR__ . '/../inc/_fw.bootstrap.php';
+require_once __DIR__ . '/../inc/_fw.bootstrap.php';
 
 /** @var \Monolog\Logger $logger */
 
@@ -19,7 +19,7 @@ if (!defined('SATIS_FILE_PATH')
   echo PHP_EOL;
   echo "❌ Missing SATIS_FILE_PATH." . PHP_EOL;
   echo PHP_EOL;
-  exit(1);
+  return 1;
 }
 
 $canonical_data = json_decode(file_get_contents(SATIS_CANONICAL_PATH), TRUE);
@@ -40,7 +40,7 @@ if (0 !== $result_code) {
   echo PHP_EOL;
   echo "❌ Failed to build repository." . PHP_EOL;
   echo PHP_EOL;
-  exit(1);
+  return 1;
 }
 echo PHP_EOL;
 echo '📦 Package repository rebuilt.' . PHP_EOL;
@@ -48,7 +48,7 @@ echo PHP_EOL;
 
 echo '👉 Next step: Open and review...' . PHP_EOL;
 echo PHP_EOL;
-echo '🔲 ' . ROOT . '/web/index.html' . PHP_EOL;
+echo '🔲 ' . $satis_data['homepage'] . ' (./web/index.html)' . PHP_EOL;
 echo PHP_EOL;
 
-exit(0);
+return $result_code;

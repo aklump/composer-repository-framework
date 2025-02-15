@@ -40,12 +40,7 @@ PackagesResource are adding by creating a GithubReporter webhook.
 * `app/bin/on_cron.sh`
 * PackagesResource will appear after the next cron run. To accelerate the process manually execute `app/bin/on_cron.php`
 
-## Finish Installation
 
-* Create a cronjob with the desired publish frequency, e.g.,
-    ```
-    */15 * * * 1-6 /PATH/TO/app/bin/on_cron.php
-    ```
 
 ## Usage
 

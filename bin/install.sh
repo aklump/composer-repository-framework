@@ -38,6 +38,6 @@ source ${FRAMEWORK_DIR}/bin/check_config.sh
 echo
 echo "👉 Next step: Open and edit config files..."
 echo
-echo "🔲 $env_file"
-echo "🔲 $satis_file"
+echo "🔲 ${env_file/$ROOT/.}"
+echo "🔲 ${satis_file/$ROOT/.}"
 echo

@@ -84,4 +84,35 @@ class SatisManagerTest extends TestCase {
     $packages = $satis_manager->load();
     $this->assertSame($expected, $packages, 'Assert works when file exists.');
   }
+
+  public function testRemove() {
+    $path_to_satis = $this->getTestFileFilepath('.cache/satis.json');
+    $this->deleteTestFile($path_to_satis);
+    $satis_manager = new SatisManager($path_to_satis);
+
+    $data = [
+      'repositories' => [
+        ['type' => 'github', 'url' => 'https://github.com/aklump/drupal_dev_sandbox'],
+        ['type' => 'github', 'url' => 'https://github.com/aklump/json-schema-merge'],
+      ],
+    ];
+    $satis_manager->save($data);
+
+    // Test removal by name (WHICH SHOULD NOW BE DISABLED)
+    $removed = $satis_manager->remove('aklump/drupal_dev_sandbox');
+    $this->assertCount(0, $removed);
+
+    $data = $satis_manager->load();
+    $this->assertCount(2, $data['repositories']);
+
+    // Test removal by full URL (WHICH SHOULD NOW WORK)
+    $removed = $satis_manager->remove('https://github.com/aklump/json-schema-merge');
+    $this->assertCount(1, $removed);
+    $this->assertEquals('https://github.com/aklump/json-schema-merge', $removed[0]);
+
+    $data = $satis_manager->load();
+    $this->assertCount(1, $data['repositories']);
+    $repository = array_values($data['repositories'])[0];
+    $this->assertEquals('https://github.com/aklump/drupal_dev_sandbox', $repository['url']);
+  }
 }

@@ -21,7 +21,7 @@ class GithubReporterTest extends TestCase {
   public function testGetVersionWhenNotTagsExist() {
     $github_reporter = $this->createPartialMock(GithubReporter::class, ['request']);
     $github_reporter->method('request')->willReturn('');
-    $payload = $this->getTestFileFilepath('github/package.json');
+    $payload = $this->getTestFileFilepath('github/package_without_tags.json');
     $request = json_decode(file_get_contents($payload), TRUE);
     $version = (new GithubReporter())->getPackageVersion($request);
     $this->assertEmpty($version);

@@ -24,6 +24,27 @@ class DedupePackagesTest extends TestCase {
         [
           'repository' => ['url' => 'https://github.com/aklump/composer-repository-framework'],
         ],
+        [
+          'repository' => ['url' => 'https://github.com/aklump/another-repo'],
+        ],
+      ],
+      [
+        [
+          'repository' => ['url' => 'https://github.com/aklump/composer-repository-framework'],
+        ],
+        [
+          'repository' => ['url' => 'https://github.com/aklump/another-repo'],
+        ],
+      ],
+    ];
+    $tests['missing_url'] = [
+      [
+        [
+          'foo' => 'bar',
+        ],
+        [
+          'repository' => ['url' => 'https://github.com/aklump/composer-repository-framework'],
+        ],
       ],
       [
         [

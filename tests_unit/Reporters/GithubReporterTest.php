@@ -14,7 +14,11 @@ class GithubReporterTest extends TestCase {
   use TestWithFilesTrait;
 
   public function testGetVersionWhenBadResponseFromGitHub() {
-    $version = (new GithubReporter())->getPackageVersion([]);
+    $github_reporter = $this->createPartialMock(GithubReporter::class, ['request']);
+    $github_reporter->method('request')->willReturn('invalid json');
+    $payload = $this->getTestFileFilepath('github/package.json');
+    $request = json_decode(file_get_contents($payload), TRUE);
+    $version = $github_reporter->getPackageVersion($request);
     $this->assertEmpty($version);
   }
 
@@ -23,7 +27,7 @@ class GithubReporterTest extends TestCase {
     $github_reporter->method('request')->willReturn('');
     $payload = $this->getTestFileFilepath('github/package_without_tags.json');
     $request = json_decode(file_get_contents($payload), TRUE);
-    $version = (new GithubReporter())->getPackageVersion($request);
+    $version = $github_reporter->getPackageVersion($request);
     $this->assertEmpty($version);
   }
 

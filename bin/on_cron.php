@@ -1,4 +1,5 @@
 <?php
+// SPDX-License-Identifier: BSD-3-Clause
 
 /**
  * This file is intended to be triggered by a cron job.

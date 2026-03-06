@@ -1,6 +1,9 @@
 <?php
+// SPDX-License-Identifier: BSD-3-Clause
 
 /**
+ * @file
+ *
  * Creates a backup of key configuration files.
  *
  * Usage: php backup.php [--output <filename>]

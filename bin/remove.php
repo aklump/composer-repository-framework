@@ -1,4 +1,6 @@
 <?php
+// SPDX-License-Identifier: BSD-3-Clause
+
 /**
  * @file
  * Can be used to remove a package from the satis.json file.

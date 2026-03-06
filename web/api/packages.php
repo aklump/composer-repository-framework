@@ -39,7 +39,8 @@ require_once __DIR__ . '/../../inc/_fw.bootstrap.php';
 
 try {
   $request_body = file_get_contents('php://input');
-  authenticate();
+  $logger->info(sprintf('Request received (%s): %s', $_SERVER['REQUEST_METHOD'] ?? '', $request_body));
+  authenticate($request_body);
   $package_change_manager = new PackageChangeManager(ROOT . '/' . Constants::ROOT_RELATIVE_CACHE_PATH);
   $response = (new Router(
     new ResourceRepository(),
@@ -57,10 +58,7 @@ catch (Exception $exception) {
 }
 echo json_encode($response, JSON_UNESCAPED_SLASHES);
 
-function authenticate() {
-  // TODO Fix this
-  return;
-  global $request_body;
+function authenticate($request_body) {
   if (empty($_ENV['API_SECRET'])) {
     throw new RuntimeException('Missing or empty API_SECRET.');
   }

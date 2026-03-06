@@ -45,15 +45,18 @@ foreach ($files_to_backup as $file) {
 }
 
 // Create a temporary directory for the backup process
-$temp_dir = sys_get_temp_dir() . '/composer_repository_backup_' . uniqid();
-if (!mkdir($temp_dir, 0777, TRUE)) {
+$unique_id = uniqid();
+$temp_dir = sys_get_temp_dir() . '/composer_repository_backup_' . $unique_id;
+$backup_inner_dir_name = 'composer-repository-backup';
+$backup_inner_dir = $temp_dir . '/' . $backup_inner_dir_name;
+if (!mkdir($backup_inner_dir, 0777, TRUE)) {
   echo "❌ Failed to create temporary directory." . PHP_EOL;
   exit(1);
 }
 
 // Copy files to the temporary directory
 foreach ($files_to_backup as $file) {
-  $dest = $temp_dir . '/' . basename($file);
+  $dest = $backup_inner_dir . '/' . basename($file);
   if (!copy($file, $dest)) {
     echo "❌ Failed to copy " . $file . " to backup directory." . PHP_EOL;
     // Cleanup
@@ -63,11 +66,12 @@ foreach ($files_to_backup as $file) {
 }
 
 // Zip the contents of the temporary directory
-// We use 'zip' command via shell for simplicity, as it's common on Unix-like systems.
+// We include the inner directory in the zip archive.
 $zip_command = sprintf(
-  'cd %s && zip -j %s .env .satis.json',
+  'cd %s && zip -r %s %s',
   escapeshellarg($temp_dir),
-  escapeshellarg($output_file)
+  escapeshellarg($output_file),
+  escapeshellarg($backup_inner_dir_name)
 );
 
 exec($zip_command, $output, $return_var);
